@@ -19,10 +19,14 @@
       font-family: cursive;
     }
 
-    &-submit {
+    &-button {
       ::ng-deep .p-button {
         border-radius: 32px;
         font-family: cursive;
+      }
+
+      &:not(last-child) {
+        margin-right: 12px;
       }
     }
   }

@@ -32,16 +32,28 @@
     align-items: center;
 
     &-caption {
+      width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
       font-family: cursive;
       font-size: 18px;
       font-weight: 600;
       margin-top: 12px;
     }
 
-    &-date {
+    &-data-wrapper {
+      display: flex;
+    }
+
+    &-data {
       font-family: cursive;
       color: gray;
       margin-top: 6px;
+
+      &:first-child {
+        margin-right: 16px;
+      }
     }
   }
 }

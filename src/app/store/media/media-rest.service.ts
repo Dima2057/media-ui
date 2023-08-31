@@ -3,6 +3,15 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {ImageCard} from "../../image-card/image-card.model";
 
+export const routesToBE = {
+  host: "http://3.209.10.185:8080",
+  apiVersion: "/api/v1",
+  mediaService: "/media",
+  upload: "/upload",
+  images: "/images",
+  search: "/images?label="
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,16 +21,17 @@ export class MediaRestService {
   }
 
   public loadImages(): Observable<ImageCard[]> {
-    return this.http.get<ImageCard[]>('http://54.197.205.8:8080/api/v1/media/images');
+    return this.http.get<ImageCard[]>(`${this.getApiUrl()}${routesToBE.images}`);
   }
 
   public uploadImage(selectedFile: FormData): Observable<ImageCard> {
-    console.log(selectedFile);
-    return this.http.post<ImageCard>('http://54.197.205.8:8080/api/v1/media/upload', selectedFile);
+    return this.http.post<ImageCard>(`${this.getApiUrl()}${routesToBE.upload}`, selectedFile);
   }
 
   public searchImages(searchValue: string): Observable<ImageCard[]> {
-    const url = 'http://54.197.205.8:8080/api/v1/media/images?label=' + searchValue;
-    return this.http.get<ImageCard[]>(url);
+    return this.http.get<ImageCard[]>(`${this.getApiUrl()}${routesToBE.search}${searchValue}`);
   }
+
+  private getApiUrl = (): string =>
+    `${routesToBE.host}${routesToBE.apiVersion}${routesToBE.mediaService}`;
 }

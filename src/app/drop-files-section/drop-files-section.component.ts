@@ -1,6 +1,9 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
-  Component, EventEmitter, Output,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Output,
 } from "@angular/core";
 
 @Component({
@@ -19,48 +22,48 @@ export class DropFilesSectionComponent {
 
   public url: string | ArrayBuffer | null = "";
   public selectedFile: any;
-  public message: string;
+  public message: string | null;
 
-  onFileDropped($event: any) {
-    console.log($event);
-    const mimeType = $event[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
-
-    this.selectedFile = $event[0];
-    const reader = new FileReader();
-    reader.readAsDataURL($event[0]);
-    reader.onload = (_event) => {
-      this.url = reader.result;
-      this.cdr.markForCheck();
-      this.selectedFileChange.emit(this.selectedFile);
+  public onFileDropped($event: any): void {
+    this.validateInputFile($event[0].type);
+    if (!this.message) {
+      this.selectedFile = $event[0];
+      this.loadImagePreview($event[0]);
     }
   }
 
   public onFileChanged(event: any): void {
-    console.log(event);
-    console.log(event?.target?.files[0]);
-    console.log(this.selectedFile);
-    const mimeType = event?.target?.files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
+    this.validateInputFile(event?.target?.files[0].type);
+    if (!this.message) {
+      this.selectedFile = event?.target?.files[0];
+      this.loadImagePreview(event?.target?.files[0])
     }
+  }
 
+  public handleDelete(): void {
+    this.clearFile();
+  }
+
+  public clearFile(): void {
+    this.selectedFile = null;
+    this.message = null;
+    this.url = null;
+    this.cdr.markForCheck();
+  }
+
+  private validateInputFile(mimeType: any): void {
+    this.message = mimeType.match(/image\/*/) == null
+      ? "Only images are supported."
+      : null;
+  }
+
+  private loadImagePreview(event: any): void {
     const reader = new FileReader();
-    this.selectedFile = event?.target?.files[0];
-    reader.readAsDataURL(event?.target?.files[0]);
+    reader.readAsDataURL(event);
     reader.onload = (_event) => {
       this.url = reader.result;
       this.cdr.markForCheck();
       this.selectedFileChange.emit(this.selectedFile);
     }
-  }
-
-  deleteFile() {
-    this.selectedFile = null;
-    this.url = null;
   }
 }

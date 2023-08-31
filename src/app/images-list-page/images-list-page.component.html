@@ -1,5 +1,6 @@
 <app-search-section
   class="images-list-page__search"
+  (clearChange)="handleClearChange()"
 ></app-search-section>
 <div class="images-list-page__header">
   <span class="images-list-page__header-caption">
@@ -24,7 +25,10 @@
   </div>
 </div>
 
-<ng-container *ngIf="cards?.length; then imageCardsTemp; else emptyTemp"></ng-container>
+<ng-container *ngIf="cards?.length;
+  then imageCardsTemp;
+  else emptyTemp"
+></ng-container>
 
 <ng-template #imageCardsTemp>
   <div class="images-list-page__images">
@@ -34,26 +38,30 @@
   </div>
   <div>
     <p-paginator
-      [first]="first3"
-      [rows]="rows3"
+      [first]="first"
+      [rows]="rows"
       [showCurrentPageReport]="true"
       [showFirstLastIcon]="false"
       [totalRecords]="totalRecords"
-      (onPageChange)="onPageChange3($event)"
+      (onPageChange)="onPageChange($event)"
     ></p-paginator>
   </div>
 </ng-template>
 
 <ng-template #emptyTemp>
-  <div>
-    <img src="assets/images/empty-content.png">
+  <div class="images-list-page__empty">
+    <div class="images-list-page__empty-image">
+      <img src="assets/images/empty-content.png">
+    </div>
+    <span class="images-list-page__empty-caption">
+      No selected images
+    </span>
   </div>
-  <div>No selected images</div>
 </ng-template>
 
 <div class="card flex justify-content-center">
   <p-overlayPanel #op>
-    <img src="https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg" alt="product" />
+    <img src="https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg"/>
   </p-overlayPanel>
 </div>
 
@@ -67,7 +75,9 @@
       Upload Image
     </span>
   </ng-template>
-  <app-drop-files-section (selectedFileChange)="handleSelectedFileChange($event)"></app-drop-files-section>
+  <app-drop-files-section
+    (selectedFileChange)="handleSelectedFileChange($event)"
+  ></app-drop-files-section>
   <ng-template pTemplate="footer">
     <p-button
       icon="pi pi-check"

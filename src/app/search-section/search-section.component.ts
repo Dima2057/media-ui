@@ -1,8 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
+  Output,
 } from "@angular/core";
-import {MediaRestService} from "../store/media/media-rest.service";
 import {MediaStoreService} from "../store/media/media-store.service";
 
 @Component({
@@ -13,16 +14,20 @@ import {MediaStoreService} from "../store/media/media-store.service";
 })
 export class SearchSectionComponent {
 
-  constructor(private mediaRestService: MediaRestService, private mediaStoreService: MediaStoreService) {
+  constructor(private mediaStoreService: MediaStoreService) {
   }
 
-  public searchValue: string;
+  @Output()
+  public clearChange = new EventEmitter<void>();
+
+  public searchValue: string | null;
 
   public handleSearchChange(): void {
-    console.log(this.searchValue);
-    this.mediaStoreService.loadSearchImages(this.searchValue);
-    // this.mediaRestService.searchImages(this.searchValue).subscribe((images) => {
-    //   console.log(images);
-    // });
+    this.mediaStoreService.loadSearchImages(<string> this.searchValue);
+  }
+
+  public handleClearChange(): void {
+    this.searchValue = null;
+    this.clearChange.emit();
   }
 }

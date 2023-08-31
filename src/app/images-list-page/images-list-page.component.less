@@ -6,7 +6,7 @@
 
   &__header {
     display: flex;
-    margin: 32px 64px;
+    margin: 0 64px;
     align-items: center;
     justify-content: space-between;
 
@@ -61,6 +61,26 @@
       .p-dialog .p-dialog-content {
         padding: 0;
       }
+    }
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    &-caption {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+      font-family: cursive;
+      font-size: 32px;
+      font-weight: 600;
     }
   }
 }

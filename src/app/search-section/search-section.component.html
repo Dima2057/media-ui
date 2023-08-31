@@ -12,8 +12,16 @@
         />
     </span>
     <p-button
-      class="search-section__search-submit"
+      class="search-section__search-button"
       label="Search"
       (onClick)="handleSearchChange()"
+    ></p-button>
+    <p-button
+      *ngIf="searchValue"
+      class="search-section__search-button"
+      styleClass="p-button-secondary p-button-text"
+      label="Clear"
+      icon="pi pi-times"
+      (onClick)="handleClearChange()"
     ></p-button>
 </div>

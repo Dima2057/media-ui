@@ -10,6 +10,9 @@
   ></p-image>
   <div class="image-card__details">
     <span class="image-card__details-caption">{{ card?.name }}</span>
-    <span class="image-card__details-date">20 May 2017</span>
+    <div class="image-card__details-data-wrapper">
+      <span class="image-card__details-data">{{ card?.date | date }}</span>
+      <span class="image-card__details-data">{{ card?.size | imageSize }}</span>
+    </div>
   </div>
 </p-card>
