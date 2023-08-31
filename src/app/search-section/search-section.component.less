@@ -1,0 +1,29 @@
+.search-section {
+  &__caption {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    font-family: cursive;
+    color: #585353;
+    margin-bottom: 32px;
+  }
+
+  &__search {
+    display: flex;
+    justify-content: center;
+
+    &-input {
+      width: 274px;
+      margin-right: 32px;
+      border-radius: 32px;
+      font-family: cursive;
+    }
+
+    &-submit {
+      ::ng-deep .p-button {
+        border-radius: 32px;
+        font-family: cursive;
+      }
+    }
+  }
+}

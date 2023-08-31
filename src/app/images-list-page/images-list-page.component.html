@@ -1,0 +1,79 @@
+<app-search-section
+  class="images-list-page__search"
+></app-search-section>
+<div class="images-list-page__header">
+  <span class="images-list-page__header-caption">
+    Images
+  </span>
+  <div class="images-list-page__header-controls">
+    <p-button
+      class="images-list-page__header-controls-item"
+      icon="pi pi-image"
+      label="Add Image"
+      (onClick)="handleAddImage()"
+    ></p-button>
+    <p-button
+      class="images-list-page__header-controls-item"
+      [icon]="filledFilter
+        ? 'pi pi-filter-fill'
+        : 'pi pi-filter'"
+      styleClass="p-button-text"
+      label="Filter"
+      (click)="op.toggle($event)"
+    ></p-button>
+  </div>
+</div>
+
+<ng-container *ngIf="cards?.length; then imageCardsTemp; else emptyTemp"></ng-container>
+
+<ng-template #imageCardsTemp>
+  <div class="images-list-page__images">
+    <ng-container *ngFor="let item of cards">
+      <app-image-card [card]="item"></app-image-card>
+    </ng-container>
+  </div>
+  <div>
+    <p-paginator
+      [first]="first3"
+      [rows]="rows3"
+      [showCurrentPageReport]="true"
+      [showFirstLastIcon]="false"
+      [totalRecords]="totalRecords"
+      (onPageChange)="onPageChange3($event)"
+    ></p-paginator>
+  </div>
+</ng-template>
+
+<ng-template #emptyTemp>
+  <div>
+    <img src="assets/images/empty-content.png">
+  </div>
+  <div>No selected images</div>
+</ng-template>
+
+<div class="card flex justify-content-center">
+  <p-overlayPanel #op>
+    <img src="https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg" alt="product" />
+  </p-overlayPanel>
+</div>
+
+<p-dialog
+  class="images-list-page__upload"
+  [(visible)]="visible"
+  [style]="{ width: '30vw' }"
+>
+  <ng-template pTemplate="header">
+    <span class="images-list-page__upload-caption">
+      Upload Image
+    </span>
+  </ng-template>
+  <app-drop-files-section (selectedFileChange)="handleSelectedFileChange($event)"></app-drop-files-section>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      label="Upload"
+      styleClass="p-button-text"
+      (click)="onUpload()"
+    ></p-button>
+  </ng-template>
+</p-dialog>

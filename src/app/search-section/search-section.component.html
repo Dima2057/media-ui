@@ -1,0 +1,19 @@
+<div class="search-section__caption">
+  Get Exclusive images for your purposes
+</div>
+<div class="search-section__search">
+    <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          class="search-section__search-input"
+          type="text"
+          [(ngModel)]="searchValue"
+        />
+    </span>
+    <p-button
+      class="search-section__search-submit"
+      label="Search"
+      (onClick)="handleSearchChange()"
+    ></p-button>
+</div>

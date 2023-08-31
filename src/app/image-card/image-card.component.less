@@ -1,0 +1,47 @@
+.image-card {
+  &__item::ng-deep {
+    .p-card {
+      border-radius: 32px;
+
+      .p-card-body {
+        padding: 0;
+      }
+
+      .p-card-content {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &__image::ng-deep {
+    .p-image-preview-container>img {
+      max-height: 190px;
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+    }
+
+    .p-image-preview-container:hover>.p-image-preview-indicator {
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-caption {
+      font-family: cursive;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    &-date {
+      font-family: cursive;
+      color: gray;
+      margin-top: 6px;
+    }
+  }
+}

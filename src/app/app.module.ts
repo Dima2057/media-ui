@@ -13,6 +13,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {RouterModule} from "@angular/router";
 import {mediaUiEffects} from "./store/effects";
 import {appReducers} from "./store/reducers";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {appReducers} from "./store/reducers";
     BrowserModule,
     BrowserAnimationsModule,
     ButtonModule,
+    HttpClientModule,
     StoreModule.forRoot(appReducers, environment.production ? {} : {
       runtimeChecks: {
         strictActionImmutability: true,

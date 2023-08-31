@@ -7,8 +7,12 @@ import {
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/home",
+    redirectTo: "/images",
     pathMatch: "full"
+  },
+  {
+    path: "images",
+    loadChildren: () => import("./images-list-page/images-list-page.module").then(m => m.ImagesListPageModule),
   },
   {
     path: "**",

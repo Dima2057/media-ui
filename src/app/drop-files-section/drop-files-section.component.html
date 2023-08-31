@@ -1,0 +1,40 @@
+<ng-container *ngIf="selectedFile;
+    then imageTemplate;
+    else uploadTemplate"
+></ng-container>
+
+<ng-template #imageTemplate>
+  <img
+    class="drop-files-section__image"
+    [src]="url"
+  >
+  <div
+    *ngIf="selectedFile"
+    (click)="deleteFile()"
+  >
+    <i class="pi pi-trash" style="font-size: 2.5rem"></i>
+  </div>
+</ng-template>
+
+<ng-template #uploadTemplate>
+  <div
+    appDnd
+    class="container"
+    (fileDropped)="onFileDropped($event)"
+  >
+    <input
+      multiple
+      id="fileDropRef"
+      type="file"
+      (change)="onFileChanged($event)"
+    />
+    <i
+      class="pi pi-upload"
+      style="font-size: 2.5rem"
+    ></i>
+    <h3>Drag and drop file here</h3>
+    <h3>or</h3>
+    <label for="fileDropRef">Browse for file</label>
+  </div>
+</ng-template>
+<div *ngIf="message">{{ message}} </div>
