@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.10.
 
+# Showcases
+![image](https://github.com/Dima2057/media-ui/assets/47894863/2ef248c7-d245-45d5-bd3a-47bcc984da8f)
+
+![image](https://github.com/Dima2057/media-ui/assets/47894863/bc48bce8-ed30-4387-ae7a-ace3da9ffb76)
+
+![image](https://github.com/Dima2057/media-ui/assets/47894863/fbd1b8ea-a636-4207-bed9-a847ee2353b1)
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
